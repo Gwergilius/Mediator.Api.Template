@@ -1,4 +1,5 @@
-﻿using MediatR.Example.API.Services;
+﻿using MediatR.Example.API.Requests;
+using MediatR.Example.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MediatR.Example.API.Controllers;
@@ -7,20 +8,20 @@ namespace MediatR.Example.API.Controllers;
 [Route("[controller]")]
 public class WeatherForecastController : ControllerBase
 {
-    private readonly IWeatherForecastService _weatherForecastService;
+    private readonly IMediator _mediator;
     private readonly ILogger _logger;
 
     public WeatherForecastController(
-        IWeatherForecastService weatherForecastService,
+        IMediator mediator,
         ILogger<WeatherForecastController> logger)
     {
-        _weatherForecastService = weatherForecastService;
+        _mediator = mediator;
         _logger = logger;
     }
 
     [HttpGet]
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
-        return await _weatherForecastService.GetWeatherForecast();
+        return await _mediator.Send(new GetAllForecatsRequest());
     }
 }

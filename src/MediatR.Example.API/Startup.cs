@@ -22,6 +22,7 @@ public class Startup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
+        services.AddMediatR(typeof(Startup));
         services.AddScoped<IWeatherForecastService, WeatherForecastService>();
     }
 
