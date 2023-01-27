@@ -24,4 +24,10 @@ public class WeatherForecastController : ControllerBase
     {
         return await _mediator.Send(new GetAllForecatsRequest());
     }
+
+    [HttpGet("{date}")]
+    public async Task<WeatherForecast> Get(string date)
+    {
+        return await _mediator.Send(new GetForecastRequest(date));
+    }
 }

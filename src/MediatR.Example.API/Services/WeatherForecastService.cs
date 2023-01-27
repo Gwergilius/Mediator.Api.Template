@@ -22,4 +22,7 @@ public class WeatherForecastService : IWeatherForecastService
 
     public Task<IEnumerable<WeatherForecast>> GetWeatherForecast()
         => Task.FromResult(_forecasts.AsEnumerable());
+
+    public Task<WeatherForecast?> GetWeatherForecast(DateOnly date)
+        => Task.FromResult(_forecasts.FirstOrDefault(x => x.Date == date));
 }
