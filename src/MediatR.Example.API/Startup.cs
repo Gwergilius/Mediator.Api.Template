@@ -1,4 +1,6 @@
-﻿namespace MediatR.Example.API;
+﻿using MediatR.Example.API.Services;
+
+namespace MediatR.Example.API;
 
 public class Startup
 {
@@ -19,6 +21,8 @@ public class Startup
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
+        services.AddScoped<IWeatherForecastService, WeatherForecastService>();
     }
 
     /// <summary>
